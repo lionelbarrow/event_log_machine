@@ -1,11 +1,10 @@
-# coding: utf-8
 lib = File.expand_path('../lib', __FILE__)
 $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
-require 'ec_state_machine/version'
+require 'event_log_machine/version'
 
 Gem::Specification.new do |spec|
-  spec.name          = "ec_state_machine"
-  spec.version       = EcStateMachine::VERSION
+  spec.name          = "event_log_machine"
+  spec.version       = EventLogMachine::VERSION
   spec.authors       = ["lionelbarrow"]
   spec.email         = ["lionelbarrow@gmail.com"]
   spec.summary       = "An eventual consistency aware state machine"

@@ -1,4 +1,4 @@
-module EcStateMachine
+module EventLogMachine
   class Constructor
     def initialize(machine, klass)
       @machine, @klass = machine, klass

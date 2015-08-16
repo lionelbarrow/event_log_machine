@@ -1,2 +1,2 @@
 require "rspec"
-require_relative "../lib/ec_state_machine.rb"
+require_relative "../lib/event_log_machine.rb"

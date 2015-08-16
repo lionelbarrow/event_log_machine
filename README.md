@@ -1,4 +1,4 @@
-# Eventually-Consistent State Machine
+# Event Log Machine
 
 A spike of a library for creating objects from a series of events applied to a state machine, where the events may arrive out of order.
 

@@ -1,4 +1,4 @@
-module EcStateMachine
+module EventLogMachine
   class Model
     def self.model_name(name)
       @name = name

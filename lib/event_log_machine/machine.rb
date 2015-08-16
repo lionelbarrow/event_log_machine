@@ -1,4 +1,4 @@
-module EcStateMachine
+module EventLogMachine
   class Machine
     UninitializedState = :_unitialized
 

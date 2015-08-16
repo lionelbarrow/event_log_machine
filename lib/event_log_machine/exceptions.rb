@@ -1,4 +1,4 @@
-module EcStateMachine
+module EventLogMachine
   class InvalidTransition < StandardError; end
 
   class NoConsistentHistory < StandardError; end

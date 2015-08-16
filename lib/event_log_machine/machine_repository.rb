@@ -1,4 +1,4 @@
-module EcStateMachine
+module EventLogMachine
   class MachineRepository
     @@machines = {}
     @@model_classes = {}
