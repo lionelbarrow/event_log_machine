@@ -5,19 +5,25 @@ module EventLogMachine
     end
 
     def create_from_events(events)
+      result = @machine.walk_events(events)
+      return @klass.new(result.status, result.history) if result.success?
+
       status = nil
       valid_histories = []
 
+      # Naively looping over permutations has O(n!) average case performance.
+      # This can be made much better with a smarter exploration of the space,
+      # but worst-case performance will still be O(n!)
       events.permutation do |history|
-        begin
-          status = @machine.walk_events(history)
-        rescue InvalidTransition
-        else
+        result = @machine.walk_events(history)
+
+        if result.success?
           valid_histories << history
+          status = result.status
         end
       end
 
-      raise NoConsistentHistory if status.nil?
+      raise NoConsistentHistory if valid_histories.length == 0
 
       raise MultipleConsistentHistories if valid_histories.length > 1
 

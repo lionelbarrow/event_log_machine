@@ -42,6 +42,14 @@ describe EventLogMachine::Constructor do
       expect( user.events ).to eq ["Create active", "Log in", "Log out", "Delete active user"]
     end
 
+    it "accepts a log with multiple possible histories if the input does not have to be re-ordered" do
+      events = ["Create active", "Log in", "Log out", "Mark inactive", "Mark active"]
+
+      user = constructor.create_from_events(events)
+
+      expect( user.status ).to eq :active
+    end
+
     it "throws an error if no consistent history can be found" do
       events = ["Create active", "Log out"]
 
@@ -49,7 +57,7 @@ describe EventLogMachine::Constructor do
     end
 
     it "throws an error if multiple possible histories are found" do
-      events = ["Create active", "Log in", "Log out", "Mark inactive", "Mark active"]
+      events = ["Log in", "Log out", "Mark inactive", "Mark active", "Create active"]
 
       expect{ constructor.create_from_events(events) }.to raise_error(EventLogMachine::MultipleConsistentHistories)
     end

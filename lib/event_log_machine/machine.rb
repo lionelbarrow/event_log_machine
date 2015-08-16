@@ -29,11 +29,11 @@ module EventLogMachine
         if current_state == transition.fetch(:start) && @graph.has_edge?(current_state, next_state)
           current_state = next_state
         else
-          raise InvalidTransition.new("Cannot transition from #{current_state} to #{next_state}")
+          return Result.new(false, current_state, events)
         end
       end
 
-      current_state
+      Result.new(true, current_state, events)
     end
   end
 end
